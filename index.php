@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta property="og:title" content="<?= $title ?>">
-    <meta property="og:url" content="https://tools.cici.lt/">
+    <meta property="og:url" content="<?= $base_url ?>">
     <meta property="og:type" content="website">
     <meta property="og:description" content="Developer pastebin & tools">
-    <meta property="og:image" content="https://tools.cici.lt/assets/img/cloud-logo-black.png">    
+    <meta property="og:image" content="<?= $base_url ?>/assets/img/cloud-logo-black.png">    
 
     <link rel="manifest" href="/site.webmanifest">
     <link rel="apple-touch-icon" href="icon.png">
