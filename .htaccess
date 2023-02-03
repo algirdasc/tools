@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# RedirectMatch 404 /\.git
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z])$ /index.php?tool=$1
+RewriteRule ^([a-z])/([a-zA-Z0-9]+)$ /index.php?tool=$1&hash=$2
+RewriteRule ^([a-z])/([a-zA-Z0-9]+)/(\d+(-\d+)?)$ /index.php?tool=$1&hash=$2&lines=$3
+
+
+ErrorDocument 404 /404.php
