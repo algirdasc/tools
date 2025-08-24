@@ -1,7 +1,6 @@
 services:
   tools:
-    build:
-      context: .
+    image: algirdasc/tools:latest
     env_file:
       - .env
     ports:
