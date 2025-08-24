@@ -1,13 +1,17 @@
 services:
   tools:
     image: algirdasc/tools:latest
+    restart: unless-stopped
     env_file:
       - .env
     ports:
       - 8080:80
+    depends_on:
+      - mysql
 
   mysql:
     image: mysql:8
+    restart: unless-stopped
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: true
       MYSQL_DATABASE: ${MYSQL_DATABASE}
