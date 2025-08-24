@@ -35,7 +35,7 @@ if (strpos($data, '{') === 0) {
 if ($function !== null) {
 	$data = $function($data, $format);
 }
-$snippet = saveSnippet($data, null, strtolower($format));
+$snippet = saveSnippet(strtolower($format), $data, null);
 
 response([
     'redirect' => "{$base_url}/f/{$snippet['hash']}",

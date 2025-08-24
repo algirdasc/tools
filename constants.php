@@ -63,9 +63,6 @@ function mysql(): mysqli
         }
 
         $mysqli->set_charset('utf8mb4');
-        if (!$mysqli->query("DESCRIBE `snippets`")) {
-            $mysqli->multi_query(file_get_contents('db_structure.sql'));
-        }
     }
 
     return $mysqli;
@@ -101,7 +98,7 @@ function snippetHash(string $format, string $snippetLeft, ?string $snippetRight 
     return $crc;
 }
 
-function saveSnippet(string $snippetLeft, ?string $snippetRight = null, string $format, ?string $title = null): ?array
+function saveSnippet(string $format, string $snippetLeft, ?string $snippetRight = null, ?string $title = null): ?array
 {
     if ($snippetLeft === $snippetRight) {
         $snippetRight = null;

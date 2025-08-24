@@ -13,7 +13,7 @@ if (!$snippetLeft || !$format || !array_key_exists($format, $formats)) {
     error('Invalid request');
 }
 
-if ($snippet = saveSnippet($snippetLeft, $snippetRight, $format, $title)) {
+if ($snippet = saveSnippet($format, $snippetLeft, $snippetRight, $title)) {
     response(['hash' => $snippet['hash']]);
 }
 
