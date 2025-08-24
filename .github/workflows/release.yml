@@ -39,7 +39,7 @@ jobs:
         with:
           images: algirdasc/tools
           tags: |
-            type=semver,pattern={{version}}
+            type=semver,pattern={{raw}}
             type=raw,value=latest
 
       - name: Build and push Docker image

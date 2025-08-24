@@ -63,6 +63,9 @@ function mysql(): mysqli
         }
 
         $mysqli->set_charset('utf8mb4');
+        if (!$mysqli->query("DESCRIBE `snippets`")) {
+            $mysqli->multi_query(file_get_contents('db_structure.sql'));
+        }
     }
 
     return $mysqli;
