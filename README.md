@@ -6,6 +6,6 @@ Some simple string manipulation toolset.
 
 ## Install
 
- 1. Rename `secrets.orig.php` to `secrets.php`
- 2. Edit `secrets.php`
- 3. Import `db_structure.sql` to MySQL/MariaDB
+ 1. Rename `env.example` to `.env`
+ 2. Edit `.env` for your preference
+ 3. Execute `docker compose up -d`

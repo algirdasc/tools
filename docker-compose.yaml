@@ -2,12 +2,17 @@ services:
   tools:
     build:
       context: .
+    env_file:
+      - .env
     ports:
       - 8080:80
 
   mysql:
     image: mysql:8
     environment:
-      MYSQL_DATABASE: tools
-      MYSQL_USER: tools
-      MYSQL_PASSWORD: tools
+      MYSQL_RANDOM_ROOT_PASSWORD: true
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./db_structure.sql:/docker-entrypoint-initdb.d/init.sql

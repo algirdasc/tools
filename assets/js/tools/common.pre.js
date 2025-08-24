@@ -69,5 +69,5 @@ function selectToAutoMode(mode)
 
 function setTitle(title)
 {
-    $('title').text('ČiČi Tools - ' + title);
+    $('title').text(title);
 }

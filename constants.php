@@ -1,6 +1,6 @@
 <?php
 
-$title = 'ČiČi Tools';
+$title = getenv('APP_TITLE') . ' Tools';
 $base_url = "https://{$_SERVER['SERVER_NAME']}";
 $current_url = "https://{$_SERVER['SERVER_NAME']}{$_SERVER['REQUEST_URI']}";
 
@@ -55,9 +55,7 @@ function mysql(): mysqli
     global $mysqli;
 
     if ($mysqli === null) {
-    	include('secrets.php');
-
-        $mysqli = new mysqli('localhost', $mysql_user, $mysql_pass, $mysql_db);
+        $mysqli = new mysqli(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), getenv('MYSQL_DATABASE'));
 
         if ($mysqli->connect_errno) {
             printf("Connect failed: %s\n", $mysqli->connect_error);
