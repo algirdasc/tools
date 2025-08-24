@@ -1,0 +1,13 @@
+services:
+  tools:
+    build:
+      context: .
+    ports:
+      - 8080:80
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: tools
+      MYSQL_USER: tools
+      MYSQL_PASSWORD: tools
