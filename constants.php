@@ -89,7 +89,7 @@ function getSnippet(string $hash): ?array
     return $result;
 }
 
-function snippetHash(string $snippetLeft, ?string $snippetRight = null, string $format): string
+function snippetHash(string $format, string $snippetLeft, ?string $snippetRight = null): string
 {
     $str = "{$format}_{$snippetLeft}";
     if ($snippetRight) {
@@ -112,7 +112,7 @@ function saveSnippet(string $snippetLeft, ?string $snippetRight = null, string $
     
     $title = $title ? $title : null;
         
-    $hash = snippetHash($snippetLeft, $snippetRight, $format);
+    $hash = snippetHash($format, $snippetLeft, $snippetRight);
     
     $snippet = getSnippet($hash);
 
