@@ -28,6 +28,32 @@ $('#hash-b64-decode').on('click', function () {
     }
 });
 
+$('#inflate').on('click', function () {
+    const btn = $(this);
+    const t = $(this).parent().find('textarea');
+    if (!t.val()) {
+        return;
+    }
+
+    setButtonBusy(btn);
+    ajax('gzinflate.php',
+        {
+            'base64': t.val()
+        },
+        function (response) {
+            if ($('#inflate-redirect').is(':checked')) {
+                window.location.href = response.redirect;
+            } else {
+                result.text(response.data);
+            }
+        },
+        handleAjaxError,
+        function () {
+            setButtonReady(btn);
+        }
+    )
+});
+
 $('#hash-b64-uncompress').on('click', function () {
     const btn = $(this);
     const t = $(this).parent().find('textarea');
