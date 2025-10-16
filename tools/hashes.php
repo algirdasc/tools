@@ -29,6 +29,16 @@
             <button class="btn btn-outline-primary" type="button" id="hash-b64-decode"><i class="bi bi-activity"></i></button>
         </div>
         <hr />
+        <h5><i class="bi bi-archive"></i> Base64 / HEX Decode & gzinflate</h5>
+        <div class="input-group">
+            <textarea class="form-control"></textarea>
+            <button class="btn btn-outline-primary" type="button" id="hash-b64-inflate"><i class="bi bi-activity"></i></button>
+        </div>
+        <input type="checkbox" id="inflate-redirect" checked />
+        <label class="form-check-label" for="inflate-redirect">
+            Redirect
+        </label>
+        <hr />
         <h5><i class="bi bi-archive"></i> Base64 / HEX Decode & gzuncompress</h5>
         <div class="input-group">
             <textarea class="form-control"></textarea>
