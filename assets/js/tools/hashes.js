@@ -28,7 +28,7 @@ $('#hash-b64-decode').on('click', function () {
     }
 });
 
-$('#inflate').on('click', function () {
+$('#hash-b64-inflate').on('click', function () {
     const btn = $(this);
     const t = $(this).parent().find('textarea');
     if (!t.val()) {
