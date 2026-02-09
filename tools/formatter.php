@@ -8,11 +8,11 @@
         <button type="button" class="btn btn-primary" id="function-diff" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Diff"><i class="bi bi-grid-1x2"></i></button>
     </div>
     <div class="w-100">
-        <input type="text" id="snippet-title" class="form-control" readonly value="<?= $activeSnippet ? htmlspecialchars($activeSnippet['title']) : '' ?>" length="255" />
+        <input type="text" id="snippet-title" class="form-control" readonly value="<?= $activeSnippet && isset($activeSnippet['title']) ? htmlspecialchars($activeSnippet['title']) : '' ?>" length="255" />
     </div>
 </div>
 <div class="h-100 border cm-full-height" style="position: relative;">
-    <textarea id="formatter-code-input" class="form-control align-self-stretch"><?= $activeSnippet ? htmlSafeSnippet($activeSnippet['snippetLeft']) : null ?></textarea>
+    <textarea id="formatter-code-input" class="form-control align-self-stretch"><?= $activeSnippet && isset($activeSnippet['snippetLeft']) ? htmlSafeSnippet($activeSnippet['snippetLeft']) : null ?></textarea>
 </div>
 <div>
     <hr />
