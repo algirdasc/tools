@@ -1,6 +1,7 @@
 <?php
 
-require('constants.php');
+require('config.php');
+require('lib.php');
 
 header('Content-Type: application/json');
 

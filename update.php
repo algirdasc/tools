@@ -5,7 +5,8 @@ if (php_sapi_name() !== 'cli') {
     exit('Forbidden');
 }
 
-require_once 'constants.php';
+require_once 'config.php';
+require_once 'lib.php';
 
 $migrationFiles = [
     'snippets' => __DIR__ . '/sql/snippets.sql',

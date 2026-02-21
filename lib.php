@@ -1,56 +1,6 @@
 <?php
 
-$title = getenv('APP_TITLE') . ' Tools';
-
-$appBaseUrl = rtrim((string) getenv('APP_BASE_URL'), '/');
-$base_url = $appBaseUrl ?: "https://{$_SERVER['SERVER_NAME']}";
-$current_url = $base_url . ($_SERVER['REQUEST_URI'] ?? '/');
-
 $mysqli = null;
-
-$tools = [
-    'f' => 'formatter',
-    'd' => 'diff',
-    'h' => 'hashes',
-    'm' => 'misc',
-];
-
-$js = [
-    'formatter' => [
-        '//unpkg.com/jsonlint@1.6.3/web/jsonlint.js',
-        '/assets/js/addons/selection/active-line.js',
-        '/assets/js/addons/selection/mark-selection.js',
-        '/assets/js/addons/lint/lint.js',
-        '/assets/js/addons/lint/json-lint.js',
-        '/assets/js/addons/edit/trailingspace.js',
-    ],
-    'diff' => [
-        '/assets/js/addons/merge/merge.js',
-        '/assets/js/diff_match_path.js',
-    ],
-    'hashes' => [
-        '/assets/js/hashing.js',
-    ]
-];
-
-$formats = [    
-    'css' => 'CSS',
-    'cpp' => 'C++',
-    'htmlmixed' => 'HTML',
-    'javascript' => 'JavaScript',
-    'json' => 'JSON',
-    'php' => 'PHP',
-    'python' => 'Python',
-    'sql' => 'SQL',
-    'twig' => 'Twig',
-    'yaml' => 'Yaml',
-    'text' => 'Text',
-    'd' => 'Table',
-    'xml'  => 'XML',
-];
-
-$activeTool = $tools[$_GET['tool'] ?? 'f'] ?? $tools['f'];
-$activeSnippet = getSnippet($_GET['hash'] ?? '');
 
 function mysql(): mysqli
 {
@@ -70,7 +20,6 @@ function mysql(): mysqli
     return $mysqli;
 }
 
-
 function getSnippet(string $hash): ?array
 {
     if (!$hash) {
@@ -82,7 +31,7 @@ function getSnippet(string $hash): ?array
     $stmt->execute();
 
     $result = $stmt->get_result()->fetch_assoc();
-    
+
     $stmt->close();
 
     return $result;
@@ -96,7 +45,7 @@ function snippetHash(string $format, string $snippetLeft, ?string $snippetRight 
     }
 
     $crc = rtrim(strtr(base64_encode(crc64($str)), '+/', '-_'), '=');
-    
+
     return $crc;
 }
 
@@ -108,30 +57,30 @@ function saveSnippet(string $format, string $snippetLeft, ?string $snippetRight 
 
     $dbSafeSnippetLeft = dbSafeSnippet($snippetLeft);
     $dbSafeSnippetRight = $snippetRight ? dbSafeSnippet($snippetRight) : null;
-    
+
     $title = $title ? $title : null;
-        
+
     $hash = snippetHash($format, $snippetLeft, $snippetRight);
-    
+
     $snippet = getSnippet($hash);
 
     if ($snippet) {
         return $snippet;
     }
-    
+
     $stmt = mysql()->prepare('INSERT IGNORE INTO snippets VALUES (?, ?, ?, ?, ?, NULL)');
     $stmt->bind_param('sssss', $hash, $title, $dbSafeSnippetLeft, $dbSafeSnippetRight, $format);
     $stmt->execute();
     $stmt->close();
-        
+
     return getSnippet($hash);
 }
 
 function dbSafeSnippet(string $snippet): string
 {
     $snippet = htmlentities($snippet);
-    $snippet = gzcompress($snippet, 9);    
-    $snippet = base64_encode($snippet);    
+    $snippet = gzcompress($snippet, 9);
+    $snippet = base64_encode($snippet);
 
     return (string) $snippet;
 }
@@ -143,7 +92,7 @@ function htmlSafeSnippet(?string $snippet): string
         $snippet = base64_decode($snippet);
         $snippet = gzuncompress($snippet);
     }
-    
+
     return (string) $snippet;
 }
 
