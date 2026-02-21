@@ -1,13 +1,25 @@
 # Tools
 
-Some simple string manipulation toolset. 
+A small set of developer tools for simple string/code manipulation.
 
-**Tool is intended for internal use, so it might have some unsanitized input or vulnerabilities, protect it with IP rules or firewall or use it at your own risk!**
+**This tool is intended for internal use. It may contain unsanitized input or vulnerabilities—protect it with IP rules or a firewall, and use it at your own risk.**
 
-## Install
+## Installation
 
- 1. Rename `env.example` to `.env`
- 2. Edit `.env` for your preference
- 3. Execute `docker compose up -d`
- 4. Navigate to `update.php` script: https://your-url/update.php
- 
+1. Rename [`env.example`](./env.example) to `.env`.
+2. Edit `.env` to match your environment.
+3. Start the stack:
+
+```sh
+docker compose up -d
+```
+
+4. Run the database migration script:
+
+- CLI (recommended):
+
+```sh
+php update.php
+```
+
+- Web (only if you allow it): `https://your-url/update.php`
