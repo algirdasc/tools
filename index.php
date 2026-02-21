@@ -1,4 +1,10 @@
-<?php require('constants.php') ?>
+<?php
+require('config.php');
+require('lib.php');
+
+$activeTool = $tools[$_GET['tool'] ?? 'f'] ?? $tools['f'];
+$activeSnippet = getSnippet($_GET['hash'] ?? '');
+?>
 
 <!doctype html>
 
