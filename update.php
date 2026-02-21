@@ -14,13 +14,13 @@ foreach ($migrationFiles as $table => $script) {
     }
 
     try {
-        $mysqli->query("DESCRIBE `$table`");
+        $mysql->query("DESCRIBE `$table`");
     } catch (Exception $exception) {
         if ($exception->getCode() !== 1146) {
             throw $exception;
         }
-        
-        $mysqli->multi_query(file_get_contents($script));
+
+        $mysql->multi_query(file_get_contents($script));
     }
 
     @unlink($script);
