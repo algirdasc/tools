@@ -8,7 +8,7 @@
         <button type="button" class="btn btn-primary" id="function-diff" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Diff"><i class="bi bi-grid-1x2"></i></button>
     </div>
     <div class="w-100">
-        <input type="text" id="snippet-title" class="form-control" readonly value="<?= $activeSnippet && isset($activeSnippet['title']) ? htmlspecialchars($activeSnippet['title']) : '' ?>" length="255" />
+        <input type="text" id="snippet-title" class="form-control" readonly value="<?= $activeSnippet && isset($activeSnippet['title']) ? htmlspecialchars($activeSnippet['title'] ?? '', ENT_QUOTES) : '' ?>" length="255" />
     </div>
 </div>
 <div class="h-100 border cm-full-height" style="position: relative;">
