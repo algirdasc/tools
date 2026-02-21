@@ -14,12 +14,8 @@ A small set of developer tools for simple string/code manipulation.
 docker compose up -d
 ```
 
-4. Run the database migration script:
-
-- CLI (recommended):
+4. Run the database migration script (CLI only):
 
 ```sh
 php update.php
 ```
-
-- Web (only if you allow it): `https://your-url/update.php`
