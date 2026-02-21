@@ -6,10 +6,14 @@ on:
 
 permissions:
   contents: write
+  packages: write
 
 jobs:
   create-release:
     runs-on: ubuntu-latest
+    outputs:
+      new_tag: ${{ steps.bump.outputs.new_tag }}
+
     steps:
       - name: Repo checkout
         uses: actions/checkout@v4
@@ -25,4 +29,12 @@ jobs:
         with:
           tag: ${{ steps.bump.outputs.new_tag }}
           generateReleaseNotes: true
+
+
+  build-and-push-docker:
+    needs: create-release
+    uses: ./.github/workflows/push-to-registry.yml
+    with:
+      tag: ${{ needs.create-release.outputs.new_tag }}
+    secrets: inherit
 
