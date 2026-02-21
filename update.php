@@ -1,5 +1,10 @@
 <?php
 
+if (php_sapi_name() !== 'cli') {
+    http_response_code(403);
+    exit('Forbidden');
+}
+
 require_once 'config.php';
 require_once 'lib.php';
 
@@ -15,13 +20,13 @@ foreach ($migrationFiles as $table => $script) {
     }
 
     try {
-        $mysqli->query("DESCRIBE `$table`");
+        $mysql->query("DESCRIBE `$table`");
     } catch (Exception $exception) {
         if ($exception->getCode() !== 1146) {
             throw $exception;
         }
-        
-        $mysqli->multi_query(file_get_contents($script));
+
+        $mysql->multi_query(file_get_contents($script));
     }
 
     @unlink($script);

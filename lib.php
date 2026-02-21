@@ -144,6 +144,6 @@ function error(string $message): void
 {
     header('Content-type: application/json');
     http_response_code(400);
-    echo $message;
+    echo json_encode(['error' => $message]);
     exit();
 }

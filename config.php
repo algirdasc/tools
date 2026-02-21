@@ -1,8 +1,10 @@
 <?php
 
 $title = getenv('APP_TITLE') . ' Tools';
-$base_url = "https://{$_SERVER['SERVER_NAME']}";
-$current_url = "https://{$_SERVER['SERVER_NAME']}{$_SERVER['REQUEST_URI']}";
+
+$appBaseUrl = rtrim((string) getenv('APP_BASE_URL'), '/');
+$base_url = $appBaseUrl ?: "https://{$_SERVER['SERVER_NAME']}";
+$current_url = $base_url . ($_SERVER['REQUEST_URI'] ?? '/');
 
 $tools = [
     'f' => 'formatter',
