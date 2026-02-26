@@ -11,7 +11,7 @@
         <input type="text" id="snippet-title" class="form-control" readonly value="<?= $activeSnippet && isset($activeSnippet['title']) ? htmlspecialchars($activeSnippet['title'] ?? '') : '' ?>" length="255" />
     </div>
 </div>
-<div class="h-100 border cm-full-height" style="position: relative;">
+<div class="h-10, border cm-full-height" style="position: relative;">
     <textarea id="formatter-code-input" class="form-control align-self-stretch"><?= $activeSnippet && isset($activeSnippet['snippetLeft']) ? htmlSafeSnippet($activeSnippet['snippetLeft']) : null ?></textarea>
 </div>
 <div>
