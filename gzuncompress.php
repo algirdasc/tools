@@ -1,6 +1,7 @@
 <?php
 
-require('constants.php');
+require('config.php');
+require('lib.php');
 require('tools/indent/json.php');
 require('tools/indent/xml.php');
 
