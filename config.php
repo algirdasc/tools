@@ -12,6 +12,7 @@ $tools = [
     'h' => 'hashes',
     'm' => 'misc',
     's' => 'secrets',
+    'p' => 'password',
 ];
 
 $js = [

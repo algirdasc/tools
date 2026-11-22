@@ -11,6 +11,7 @@ A small set of developer tools for simple string/code manipulation.
 - **Hashes (`/h`)** — hashing, Base64, gzinflate/gzuncompress helpers
 - **Misc (`/m`)** — string length, time-to-seconds calculators
 - **Secrets (`/s`)** — end-to-end encrypted secret sharing
+- **Password generator (`/p`)** — random passwords & diceware-style passphrases, generated in the browser (Web Crypto) with optional homoglyph exclusion; settings persist locally
 
 ### Secret sharing
 

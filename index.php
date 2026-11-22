@@ -4,9 +4,10 @@ require('lib.php');
 
 // Security headers: deny framing, prevent MIME sniffing, lock down CSP.
 // Snippet content is double-escaped before output (htmlentities), so
-// script-src 'self' blocks any residual injection; unpkg.com is required
+// script-src 'self' blocks any residual injection; unpkg.com is required for
+// the jsonlint CDN and www.eff.org hosts the diceware wordlist (fetch).
 // for the jsonlint addon.
-header("Content-Security-Policy: default-src 'self'; script-src 'self' https://unpkg.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'");
+header("Content-Security-Policy: default-src 'self'; script-src 'self' https://unpkg.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://www.eff.org; object-src 'none'; base-uri 'self'; frame-ancestors 'none'");
 header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 header('Referrer-Policy: strict-origin-when-cross-origin');
@@ -74,6 +75,11 @@ $activeSnippet = $activeTool !== 'secrets' ? getSnippet($_GET['hash'] ?? '') : n
                 <li class="nav-item">
                     <a href="/s" class="nav-link <?= $activeTool === 'secrets' ? 'active' : null ?> py-3 border-bottom" data-bs-toggle="tooltip" data-bs-placement="right" title="Secrets">
                         <i class="bi bi-shield-lock"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/p" class="nav-link <?= $activeTool === 'password' ? 'active' : null ?> py-3 border-bottom" data-bs-toggle="tooltip" data-bs-placement="right" title="Password generator">
+                        <i class="bi bi-key"></i>
                     </a>
                 </li>
             </ul>
